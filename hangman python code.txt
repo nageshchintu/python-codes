@@ -1,0 +1,108 @@
+import random
+
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
+logo = ''' 
+ _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/    '''
+
+
+lives=len(stages)
+
+
+words=['nagesh','swathi','pawan','arjun']
+
+guess_word=random.choice(words)
+print(guess_word)
+word_length=len(guess_word)
+display=[]
+
+for postion in range(word_length):
+    display+="_"
+    
+print(logo)    
+
+end_of_game= False
+while not end_of_game:
+    
+    guess_latter=input("guess a latter: ").lower()
+    
+    for position in range(word_length):
+        latter=guess_word[position]
+        if latter==guess_latter:
+            display[position]=latter
+    if guess_latter not in guess_word:
+        lives-=1
+        print(lives)
+        print(stages[lives])
+        if lives==0:
+            end_of_game=True
+            
+            print("you lose")
+            
+            
+    print(display)
+    if "_" not in display:
+        end_of_game=True
+        print("you won")  
